@@ -10,16 +10,16 @@ Tower::Tower()
     this->count = 0;
 }
 
-Disk* Tower::pop()
+Disk *Tower::pop()
 {
     //remove the top element and return it or just return NULL if there is no top
-    if(this->count == 0)
+    if (this->count == 0)
     {
         return NULL;
     }
     else
     {
-        Disk* disk2Return = this->top;
+        Disk *disk2Return = this->top;
         this->top = disk2Return->getNextDisk();
         disk2Return->setNextDisk(NULL);
         this->count--;
@@ -27,24 +27,40 @@ Disk* Tower::pop()
     }
 }
 
-Disk* Tower::peek()
+Disk *Tower::peek()
 {
     //returns without removing the top element or just return NULL if there is no top
-
+    if (this->count == 0)
+    {
+        return NULL;
+    }
+    else
+    {
+        return this->top;
+    }
 }
 
 void Tower::display()
 {
     //cout on each disks toString for the entire tower
-    Disk* currDisk = this->top;
-    while(currDisk)
+    Disk *currDisk = this->top;
+    if (this->count == 0)
     {
-        cout << currDisk->toString() << endl;
-        currDisk = currDisk->getNextDisk();
+        cout << "|\n|\n|\n" << endl;
     }
-}   
+    else
+    {
+        while (currDisk)
+        {
+            cout << currDisk->toString() << endl;
+            currDisk = currDisk->getNextDisk();
+        }
 
-void Tower::push(Disk* d)
+        cout << "" << endl;
+    }
+}
+
+void Tower::push(Disk *d)
 {
     //add an element to the top of the stack
     //don't implement tower of hanoi rules yet
